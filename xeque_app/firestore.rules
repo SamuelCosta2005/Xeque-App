@@ -1,0 +1,22 @@
+rules_version = '2';
+
+// ⚠️ Leitura liberada pra todo mundo (classificação pública).
+// Escrita também liberada aqui no banco — quem protege o cadastro/edição
+// é a interface do app (PIN do organizador). Ver README.md para entender
+// essa limitação e como evoluir para segurança real com Firebase Auth.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /players/{playerId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    match /tournaments/{tournamentId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    match /matches/{matchId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
